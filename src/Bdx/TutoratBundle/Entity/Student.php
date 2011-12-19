@@ -15,7 +15,7 @@ class Student
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", unique=true, nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -24,7 +24,7 @@ class Student
     /**
      * @var string $name
      *
-     * @ORM\Column(name="name", type="string", length=100)
+     * @ORM\Column(name="name", type="string", length=100, unique=true, nullable=false)
      */
     private $name;
 
@@ -48,6 +48,16 @@ class Student
      * @ORM\Column(name="information", type="text")
      */
     private $information;
+
+    /**
+     * @ORM\OneToMany(targetEntity="RDV", mappedBy="student")
+     */
+    private $rdvs;
+
+    public function __construct()
+    {
+        $this->rdvs = new ArrayCollection();
+    }
 
 
     /**
@@ -138,5 +148,45 @@ class Student
     public function getInformation()
     {
         return $this->information;
+    }
+
+    /**
+     * Add rdvs
+     *
+     * @param Bdx\TutoratBundle\Entity\RDV $rdvs
+     */
+    public function addRDV(\Bdx\TutoratBundle\Entity\RDV $rdvs)
+    {
+        $this->rdvs[] = $rdvs;
+    }
+
+    /**
+     * Get rdvs
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getRdvs()
+    {
+        return $this->rdvs;
+    }
+
+    /**
+     * Set user
+     *
+     * @param Bdx\TutoratBundle\Entity\User $user
+     */
+    public function setUser(\Bdx\TutoratBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Bdx\TutoratBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

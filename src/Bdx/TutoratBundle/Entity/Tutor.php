@@ -3,6 +3,7 @@
 namespace Bdx\TutoratBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Bdx\TutoratBundle\Entity\Tutor
@@ -15,7 +16,7 @@ class Tutor
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", unique=true, nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -24,7 +25,7 @@ class Tutor
     /**
      * @var string $name
      *
-     * @ORM\Column(name="name", type="string", length=100)
+     * @ORM\Column(name="name", type="string", length=100, unique=true, nullable=false)
      */
     private $name;
 
@@ -41,6 +42,22 @@ class Tutor
      * @ORM\Column(name="information", type="text")
      */
     private $information;
+
+    /**
+     * @ORM\OneToMany(targetEntity="TutorLesson", mappedBy="tutor")
+     */
+    private $lessons;
+			   
+    /**
+     * @ORM\OneToMany(targetEntity="RDV", mappedBy="tutor")
+     */
+    private $rdvs;
+			   
+    public function __construct()
+    {
+        $this->lessons = new ArrayCollection();
+        $this->rdvs = new ArrayCollection();
+    }
 
 
     /**
@@ -111,5 +128,65 @@ class Tutor
     public function getInformation()
     {
         return $this->information;
+    }
+
+    /**
+     * Add lessons
+     *
+     * @param Bdx\TutoratBundle\Entity\TutorLesson $lessons
+     */
+    public function addTutorLesson(\Bdx\TutoratBundle\Entity\TutorLesson $lessons)
+    {
+        $this->lessons[] = $lessons;
+    }
+
+    /**
+     * Get lessons
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getLessons()
+    {
+        return $this->lessons;
+    }
+
+    /**
+     * Add rdvs
+     *
+     * @param Bdx\TutoratBundle\Entity\RDV $rdvs
+     */
+    public function addRDV(\Bdx\TutoratBundle\Entity\RDV $rdvs)
+    {
+        $this->rdvs[] = $rdvs;
+    }
+
+    /**
+     * Get rdvs
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getRdvs()
+    {
+        return $this->rdvs;
+    }
+
+    /**
+     * Set user
+     *
+     * @param Bdx\TutoratBundle\Entity\User $user
+     */
+    public function setUser(\Bdx\TutoratBundle\Entity\User $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Bdx\TutoratBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

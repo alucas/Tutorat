@@ -15,7 +15,7 @@ class RDV
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", unique=true, nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -24,7 +24,7 @@ class RDV
     /**
      * @var datetime $start
      *
-     * @ORM\Column(name="start", type="datetime")
+     * @ORM\Column(name="start", type="datetime", nullable=false)
      */
     private $start;
 
@@ -45,9 +45,30 @@ class RDV
     /**
      * @var text $information
      *
-     * @ORM\Column(name="information", type="text")
+     * @ORM\Column(name="information", type="text", nullable=false)
      */
     private $information;
+
+    /**
+     * @var integer $tutor
+     *
+	 * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="rdvs")
+     */
+	private $tutor;
+
+    /**
+     * @var integer $student
+     *
+	 * @ORM\ManyToOne(targetEntity="Student", inversedBy="rdvs")
+     */
+	private $student;
+
+    /**
+     * @var integer $lesson
+     *
+	 * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="rdvs")
+     */
+	private $lesson;
 
 
     /**
@@ -138,5 +159,65 @@ class RDV
     public function getInformation()
     {
         return $this->information;
+    }
+
+    /**
+     * Set tutor
+     *
+     * @param Bdx\TutoratBundle\Entity\Tutor $tutor
+     */
+    public function setTutor(\Bdx\TutoratBundle\Entity\Tutor $tutor)
+    {
+        $this->tutor = $tutor;
+    }
+
+    /**
+     * Get tutor
+     *
+     * @return Bdx\TutoratBundle\Entity\Tutor 
+     */
+    public function getTutor()
+    {
+        return $this->tutor;
+    }
+
+    /**
+     * Set student
+     *
+     * @param Bdx\TutoratBundle\Entity\Student $student
+     */
+    public function setStudent(\Bdx\TutoratBundle\Entity\Student $student)
+    {
+        $this->student = $student;
+    }
+
+    /**
+     * Get student
+     *
+     * @return Bdx\TutoratBundle\Entity\Student 
+     */
+    public function getStudent()
+    {
+        return $this->student;
+    }
+
+    /**
+     * Set lesson
+     *
+     * @param Bdx\TutoratBundle\Entity\Lesson $lesson
+     */
+    public function setLesson(\Bdx\TutoratBundle\Entity\Lesson $lesson)
+    {
+        $this->lesson = $lesson;
+    }
+
+    /**
+     * Get lesson
+     *
+     * @return Bdx\TutoratBundle\Entity\Lesson 
+     */
+    public function getLesson()
+    {
+        return $this->lesson;
     }
 }
