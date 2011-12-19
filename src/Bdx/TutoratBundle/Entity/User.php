@@ -43,9 +43,9 @@ class User
     private $email;
 
     /**
-     * @var integer $state
+     * @var string $state
      *
-     * @ORM\Column(name="state", type="integer")
+     * @ORM\Column(name="state", type="string", length=255)
      */
     private $state;
 

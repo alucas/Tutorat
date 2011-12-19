@@ -4,6 +4,7 @@ namespace Bdx\TutoratBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Bdx\TutoratBundle\Entity\Lesson
@@ -26,6 +27,16 @@ class Lesson
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=100, unique=true, nullable=false)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Type(type="string")
+     * @Assert\MaxLength(100)
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="The name cannot contain a number"
+     * )
+     * @Assert\Regex("/^[[:alpha:]\-\séèêç]+$/")
      */
     private $name;
 

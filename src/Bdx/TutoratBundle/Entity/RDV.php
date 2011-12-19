@@ -36,9 +36,9 @@ class RDV
     private $duration;
 
     /**
-     * @var integer $state
+     * @var string $state
      *
-     * @ORM\Column(name="state", type="integer")
+     * @ORM\Column(name="state", type="string", length=255)
      */
     private $state;
 
