@@ -3,8 +3,9 @@
 namespace Bdx\TutoratBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Bdx\TutoratBundle\Entity\Lesson;
 use Symfony\Component\HttpFoundation\Request;
+use Bdx\TutoratBundle\Entity\Lesson;
+use Bdx\TutoratBundle\Form\NewLessonType;
 
 
 class DefaultController extends Controller
@@ -18,10 +19,7 @@ class DefaultController extends Controller
 	public function lessonAction(Request $request)
 	{
 		$lesson = new Lesson();
-		$form = $this->createFormBuilder($lesson)
-			->add('name', 'text')
-			->add('information', 'textarea')
-			->getForm();
+		$form = $this->createForm(new NewLessonType(), $lesson);
 
 		if ($request->getMethod() == 'POST') {
 			$form->bindRequest($request);
