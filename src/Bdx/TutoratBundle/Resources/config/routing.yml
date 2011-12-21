@@ -1,3 +1,8 @@
 BdxTutoratBundle_homepage:
     pattern:  /hello/{name}
-    defaults: { _controller: BdxTutoratBundle:Default:index }
+    defaults: { _controller: BdxTutoratBundle:Default:index, name : "World" }
+
+BdxTutoratBundle_lesson:
+    pattern:  /lesson
+    defaults: { _controller: BdxTutoratBundle:Default:lesson }
+

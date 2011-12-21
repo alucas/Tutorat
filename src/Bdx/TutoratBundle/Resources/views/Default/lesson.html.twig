@@ -1,0 +1,24 @@
+{# src/Bdx/TutoratBundle/Resources/views/Default/lesson.html.twig #}
+
+
+{% extends 'BdxTutoratBundle::layout.html.twig' %}
+
+
+{% block stylesheets %}
+{% stylesheets '@BdxTutoratBundle/Resources/public/css/form.css' %}
+<link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+{{ parent() }}
+{% endblock %}
+
+
+{% block content %}
+<div>
+	<form action="{{ path('BdxTutoratBundle_lesson') }}" method="post" {{ form_enctype(form) }}>
+		{{ form_widget(form) }}
+
+		<input type="submit" />
+	</form>
+</div>
+{% endblock %}
+
