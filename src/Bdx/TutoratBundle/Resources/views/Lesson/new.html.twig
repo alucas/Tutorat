@@ -13,6 +13,16 @@
 
 
 {% block content %}
+{% if successMessage %}
+<div>
+	{{ successMessage }}
+</div>
+{% endif %}
+{% if errorMessage %}
+<div>
+	{{ errorMessage }}
+</div>
+{% endif %}
 <div>
 	<form action="{{ path('BdxTutoratBundle_lesson_new') }}" method="post" {{ form_enctype(form) }}>
 		{{ form_widget(form) }}
