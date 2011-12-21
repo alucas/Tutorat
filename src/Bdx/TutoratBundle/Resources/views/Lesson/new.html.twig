@@ -1,4 +1,4 @@
-{# src/Bdx/TutoratBundle/Resources/views/Default/lesson.html.twig #}
+{# src/Bdx/TutoratBundle/Resources/views/Lesson/new.html.twig #}
 
 
 {% extends 'BdxTutoratBundle::layout.html.twig' %}
@@ -14,7 +14,7 @@
 
 {% block content %}
 <div>
-	<form action="{{ path('BdxTutoratBundle_lesson') }}" method="post" {{ form_enctype(form) }}>
+	<form action="{{ path('BdxTutoratBundle_lesson_new') }}" method="post" {{ form_enctype(form) }}>
 		{{ form_widget(form) }}
 
 		<input type="submit" />

@@ -1,0 +1,20 @@
+{# src/Bdx/TutoratBundle/Resources/views/Lesson/show.html.twig #}
+
+
+{% extends 'BdxTutoratBundle::layout.html.twig' %}
+
+
+{% block content %}
+<div>
+	<h2>Liste des matieres</h2>
+	<table>
+		{% for lesson in lessons %}
+		<tr>
+			<td>{{ lesson.getName() }}</td>
+			<td>{{ lesson.getInformation() }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}
+
