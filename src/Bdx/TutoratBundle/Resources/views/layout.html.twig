@@ -6,12 +6,44 @@
 
 {% block title %}Tutorat{% endblock %}
 
+{% block stylesheets %}
+{{ parent() }}
+<link href="{{ asset('bundles/bdxtutorat/css/style_red.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
 
 {% block body %}
-{% block content %}
-<p>
-	Vide...
-</p>
-{% endblock %}
+<header>
+	<div id="header_inner" class="fluid">
+		<div id="logo">
+			<h1>{% block header_title %}Tutorat informatique{% endblock %}</h1>
+			<h2>{% block header_subtitle %}By NodeThirtyThree Design{% endblock %}</h2>
+		</div>
+		<nav id="menu">
+			<ul>
+				{% block header_menu %}
+				<li><a href="{{ path('lesson') }}" class="active">Lesson</a></li>
+				<li><a href="{{ path('tutor') }}" >Tutor</a></li>
+				<li><a href="#">Photos</a></li>
+				<li><a href="#">Resources</a></li>
+				<li><a href="#">Contact Me</a></li>
+				{% endblock %}
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<nav>
+	{% block menu %}
+	{% endblock %}
+</nav>
+
+<section>
+	{% block content %}
+	{% endblock %}
+</section>
+
+<footer class="fluid">
+	Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a>.
+</footer>
 {% endblock %}
 

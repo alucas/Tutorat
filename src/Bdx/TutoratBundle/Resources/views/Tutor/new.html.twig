@@ -1,13 +1,13 @@
-{# src/Bdx/TutoratBundle/Resources/views/Lesson/new.html.twig #}
+{# src/Bdx/TutoratBundle/Resources/views/Tutor/new.html.twig #}
 
 
 {% extends 'BdxTutoratBundle::layout.html.twig' %}
 
 
 {% block content %}
-<h1>Lesson creation</h1>
+<h1>Tutor creation</h1>
 
-<form action="{{ path('lesson_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('tutor_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
         <button type="submit">Create</button>
@@ -16,7 +16,7 @@
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('lesson') }}">
+        <a href="{{ path('tutor') }}">
             Back to the list
         </a>
     </li>

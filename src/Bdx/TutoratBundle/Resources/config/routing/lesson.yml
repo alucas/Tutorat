@@ -1,0 +1,30 @@
+lesson:
+    pattern:  /
+    defaults: { _controller: "BdxTutoratBundle:Lesson:index" }
+
+lesson_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BdxTutoratBundle:Lesson:show" }
+
+lesson_new:
+    pattern:  /new
+    defaults: { _controller: "BdxTutoratBundle:Lesson:new" }
+
+lesson_create:
+    pattern:  /create
+    defaults: { _controller: "BdxTutoratBundle:Lesson:create" }
+    requirements: { _method: post }
+
+lesson_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BdxTutoratBundle:Lesson:edit" }
+
+lesson_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BdxTutoratBundle:Lesson:update" }
+    requirements: { _method: post }
+
+lesson_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BdxTutoratBundle:Lesson:delete" }
+    requirements: { _method: post }

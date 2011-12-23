@@ -4,6 +4,7 @@ namespace Bdx\TutoratBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Bdx\TutoratBundle\Entity\Tutor
@@ -26,20 +27,38 @@ class Tutor
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=100, unique=true, nullable=false)
-     */
+     *
+     * @Assert\NotBlank()
+     * @Assert\Type(type="string")
+     * @Assert\MaxLength(100)
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="The name cannot contain a number."
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[[:alpha:]\-\séèêç]+$/",
+     *     message="Le nom ne peut contenir que des lettres minuscules, majuscules, des tirets et des espaces."
+     * )
+      */
     private $name;
 
     /**
      * @var string $email
      *
      * @ORM\Column(name="email", type="string", length=255)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Type(type="string")
+     * @Assert\MaxLength(255)
+     * @Assert\Email(checkMX = true)
      */
     private $email;
 
     /**
      * @var text $information
      *
-     * @ORM\Column(name="information", type="text")
+     * @ORM\Column(name="information", type="text", nullable=true)
      */
     private $information;
 

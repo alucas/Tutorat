@@ -2,15 +2,10 @@ BdxTutoratBundle_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: BdxTutoratBundle:Default:index, name : "World" }
 
-BdxTutoratBundle_lesson_index:
-    pattern:  /lesson
-    defaults: { _controller: BdxTutoratBundle:Lesson:show }
+BdxTutoratBundle_tutor:
+    resource: "@BdxTutoratBundle/Resources/config/routing/tutor.yml"
+    prefix:   /tutor
 
-BdxTutoratBundle_lesson_show:
-    pattern:  /lesson/show
-    defaults: { _controller: BdxTutoratBundle:Lesson:show }
-
-BdxTutoratBundle_lesson_new:
-    pattern:  /lesson/new
-    defaults: { _controller: BdxTutoratBundle:Lesson:new }
-
+BdxTutoratBundle_lesson:
+    resource: "@BdxTutoratBundle/Resources/config/routing/lesson.yml"
+    prefix:   /lesson

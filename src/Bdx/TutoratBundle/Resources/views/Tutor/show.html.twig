@@ -1,11 +1,11 @@
-{# src/Bdx/TutoratBundle/Resources/views/Lesson/show.html.twig #}
+{# src/Bdx/TutoratBundle/Resources/views/Tutor/show.html.twig #}
 
 
 {% extends 'BdxTutoratBundle::layout.html.twig' %}
 
 
 {% block content %}
-<h1>Lesson</h1>
+<h1>Tutor</h1>
 
 <table class="record_properties">
     <tbody>
@@ -18,6 +18,10 @@
             <td>{{ entity.name }}</td>
         </tr>
         <tr>
+            <th>Email</th>
+            <td>{{ entity.email }}</td>
+        </tr>
+        <tr>
             <th>Information</th>
             <td>{{ entity.information }}</td>
         </tr>
@@ -26,17 +30,17 @@
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('lesson') }}">
+        <a href="{{ path('tutor') }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('lesson_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('tutor_edit', { 'id': entity.id }) }}">
             Edit
         </a>
     </li>
     <li>
-        <form action="{{ path('lesson_delete', { 'id': entity.id }) }}" method="post">
+        <form action="{{ path('tutor_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
             <button type="submit">Delete</button>
         </form>
