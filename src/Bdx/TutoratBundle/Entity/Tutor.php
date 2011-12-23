@@ -40,7 +40,7 @@ class Tutor
      *     pattern="/^[[:alpha:]\-\séèêç]+$/",
      *     message="Le nom ne peut contenir que des lettres minuscules, majuscules, des tirets et des espaces."
      * )
-      */
+     */
     private $name;
 
     /**
