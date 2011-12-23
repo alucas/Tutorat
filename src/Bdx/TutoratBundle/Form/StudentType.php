@@ -11,8 +11,8 @@ class StudentType extends AbstractType
     {
         $builder
             ->add('name')
-			->add('email', null, array('required' => false));
-			->add('tel', null, array('required' => false));
+			->add('email', null, array('required' => false))
+			->add('tel', null, array('required' => false))
 			->add('information', null, array('required' => false));
         ;
     }
