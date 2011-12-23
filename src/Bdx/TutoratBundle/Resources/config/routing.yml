@@ -9,3 +9,7 @@ BdxTutoratBundle_tutor:
 BdxTutoratBundle_lesson:
     resource: "@BdxTutoratBundle/Resources/config/routing/lesson.yml"
     prefix:   /lesson
+
+BdxTutoratBundle_student:
+    resource: "@BdxTutoratBundle/Resources/config/routing/student.yml"
+    prefix:   /lesson

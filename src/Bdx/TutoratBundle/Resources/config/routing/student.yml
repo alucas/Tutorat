@@ -1,0 +1,30 @@
+student:
+    pattern:  /
+    defaults: { _controller: "BdxTutoratBundle:Student:index" }
+
+student_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BdxTutoratBundle:Student:show" }
+
+student_new:
+    pattern:  /new
+    defaults: { _controller: "BdxTutoratBundle:Student:new" }
+
+student_create:
+    pattern:  /create
+    defaults: { _controller: "BdxTutoratBundle:Student:create" }
+    requirements: { _method: post }
+
+student_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BdxTutoratBundle:Student:edit" }
+
+student_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BdxTutoratBundle:Student:update" }
+    requirements: { _method: post }
+
+student_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BdxTutoratBundle:Student:delete" }
+    requirements: { _method: post }
