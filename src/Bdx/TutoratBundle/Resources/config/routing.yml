@@ -2,6 +2,17 @@ BdxTutoratBundle_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: BdxTutoratBundle:Default:index, name : "World" }
 
+BdxTutoratBundle_login:
+    pattern:  /login
+    defaults: { _controller: BdxTutoratBundle:Default:login }
+
+BdxTutoratBundle_logincheck:
+    pattern:  /login_check
+
+BdxTutoratBundle_logout:
+    pattern:  /logout
+    defaults: { _controller: BdxTutoratBundle:Default:logout }
+
 BdxTutoratBundle_tutor:
     resource: "@BdxTutoratBundle/Resources/config/routing/tutor.yml"
     prefix:   /tutor
