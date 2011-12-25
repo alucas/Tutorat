@@ -26,7 +26,7 @@
 				<li><a href="{{ path('tutor') }}" >Tutor</a></li>
 				<li><a href="{{ path('student') }}" >Student</a></li>
 
-				{% if is_granted('ROLE_USER') %}
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 				<li><a href=" {{ path('BdxTutoratBundle_logout') }} ">Logout</a></li>
 				{% else %}
 				<li><a href=" {{ path('BdxTutoratBundle_login') }} ">Register</a></li>
