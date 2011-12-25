@@ -27,10 +27,10 @@
 				<li><a href="{{ path('student') }}" >Student</a></li>
 
 				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-				<li><a href=" {{ path('BdxTutoratBundle_logout') }} ">Logout</a></li>
+				<li><a href=" {{ path('fos_user_security_logout') }} ">Logout</a></li>
 				{% else %}
-				<li><a href=" {{ path('BdxTutoratBundle_login') }} ">Register</a></li>
-				<li><a href=" {{ path('BdxTutoratBundle_login') }} ">Login</a></li>
+				<li><a href=" {{ path('fos_user_registration_register') }} ">Register</a></li>
+				<li><a href=" {{ path('fos_user_security_login') }} ">Login</a></li>
 				{% endif %}
 				{% endblock %}
 			</ul>
