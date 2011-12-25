@@ -1,6 +1,5 @@
 security:
     encoders:
-        "Symfony\Component\Security\Core\User\User": plaintext
         "FOS\UserBundle\Model\UserInterface": sha512
 
     role_hierarchy:
@@ -11,14 +10,7 @@ security:
 
     providers:
         main_provider:
-            users:
-                admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-                student: { password: studentpass, roles: [ 'ROLE_STUDENT' ] }
-                tutor: { password: tutorpass, roles: [ 'ROLE_TUTOR' ] }
             id: fos_user.user_manager
-#            entity: { class: Bdx\TutoratBundle\Entity\User,
-#                      property: username,
-#                      roles: [ 'ROLE_USER' ] }
 
     firewalls:
         dev:
