@@ -46,7 +46,7 @@ class Lesson
     /**
      * @var text $information
      *
-     * @ORM\Column(name="information", type="text")
+     * @ORM\Column(name="information", type="text", nullable=true)
      */
     private $information;
 
