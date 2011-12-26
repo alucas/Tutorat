@@ -12,7 +12,8 @@ class TutorType extends AbstractType
         $builder
             ->add('name')
             ->add('email')
-			->add('information', null, array('required' => false));
+			->add('information', null, array('required' => false))
+			->add('user', null, array('required' => false));
         ;
     }
 

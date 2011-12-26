@@ -13,6 +13,7 @@
             <th>Nom</th>
             <th>Email</th>
             <th>Informations</th>
+            <th>Utilisateur associé</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -21,6 +22,13 @@
         <tr>
             <td>{{ entity.name }}</td>
             <td>{{ entity.email }}</td>
+			<td>
+			{% if entity.user %}
+			{{ entity.user }}
+			{% else %}
+			[non associé]
+			{% endif %}
+			</td>
             <td>{{ entity.information }}</td>
             <td>
 				<a href="{{ path('tutor_show', { 'id': entity.id }) }}">Détails</a> /

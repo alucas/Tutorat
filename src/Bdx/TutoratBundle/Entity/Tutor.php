@@ -199,7 +199,7 @@ class Tutor
      *
      * @param Bdx\TutoratBundle\Entity\User $user
      */
-    public function setUser(\Bdx\TutoratBundle\Entity\User $user)
+    public function setUser(\Bdx\TutoratBundle\Entity\User $user = null)
     {
         $this->user = $user;
     }
