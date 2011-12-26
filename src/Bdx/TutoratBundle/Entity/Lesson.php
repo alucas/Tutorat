@@ -32,13 +32,8 @@ class Lesson
      * @Assert\Type(type="string")
      * @Assert\MaxLength(100)
      * @Assert\Regex(
-     *     pattern="/\d/",
-     *     match=false,
-     *     message="The name cannot contain a number."
-     * )
-     * @Assert\Regex(
-     *     pattern="/^[[:alpha:]\-\séèêç]+$/",
-     *     message="Le nom ne peut contenir que des lettres minuscules, majuscules, des tirets et des espaces."
+     *     pattern="/^[[:alnum:]\s]+$/",
+     *     message="Le nom ne peut contenir que des lettres, chiffres et des espaces."
      * )
      */
     private $name;
