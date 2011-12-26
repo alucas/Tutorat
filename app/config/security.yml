@@ -32,6 +32,7 @@ security:
             anonymous: ~
 
     access_control:
+        - { path: ^/user, roles: [ 'ROLE_ADMIN' ] }
         - { path: ^/student, roles: [ 'ROLE_TUTOR' ] }
         - { path: ^/tutor, roles: [ 'ROLE_ADMIN' ] }
         - { path: ^/lesson, roles: [ 'ROLE_ADMIN' ] }

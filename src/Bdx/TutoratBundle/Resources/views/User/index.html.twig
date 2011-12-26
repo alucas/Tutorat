@@ -1,0 +1,32 @@
+{% extends 'BdxTutoratBundle::layout.html.twig' %}
+
+{% block content %}
+<h1>User list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th><a href="{{ path('user', {'order' : 'username'}) }}">Username</a></th>
+            <th><a href="{{ path('user', {'order' : 'email'}) }}">Email</a></th>
+            <th><a href="{{ path('user', {'order' : 'roles'}) }}">Roles</a></th>
+            <th><a href="{{ path('user', {'order' : 'state'}) }}">State</a></th>
+            <th><a href="{{ path('user', {'order' : 'information'}) }}">Information</a></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{entity.usernameCanonical }}</td>
+            <td>{{ entity.emailCanonical }}</td>
+            <td>
+				{% if 'ROLE_ADMIN' in entity.roles %}Admin, {% endif %}
+				{% if 'ROLE_TUTOR' in entity.roles %}Tuteur, {% endif %}
+				{% if 'ROLE_STUDENT' in entity.roles %}Etudiant{% endif %}
+			</td>
+            <td>{{ entity.state }}</td>
+            <td>{{ entity.information }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
