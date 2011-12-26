@@ -1,0 +1,27 @@
+{# src/Bdx/TutoratBundle/Resources/views/Tutor/delete.html.twig #}
+
+
+{% extends 'BdxTutoratBundle::layout.html.twig' %}
+
+
+{% block content %}
+<h1>Suppression du tuteur</h1>
+
+<p>
+Confirmer la suppression de la fiche du tueur : {{ entity.name }}
+</p>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('tutor') }}">
+            Retour à la liste
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('tutor_destroy', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Supprimer</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

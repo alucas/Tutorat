@@ -27,4 +27,8 @@ tutor_update:
 tutor_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "BdxTutoratBundle:Tutor:delete" }
+
+tutor_destroy:
+    pattern:  /{id}/destroy
+    defaults: { _controller: "BdxTutoratBundle:Tutor:destroy" }
     requirements: { _method: post }

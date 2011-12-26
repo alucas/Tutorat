@@ -5,16 +5,12 @@
 
 
 {% block content %}
-<h1>Tutor</h1>
+<h1>Tuteur</h1>
 
 <table class="record_properties">
     <tbody>
         <tr>
-            <th>Id</th>
-            <td>{{ entity.id }}</td>
-        </tr>
-        <tr>
-            <th>Name</th>
+            <th>Nom</th>
             <td>{{ entity.name }}</td>
         </tr>
         <tr>
@@ -22,7 +18,7 @@
             <td>{{ entity.email }}</td>
         </tr>
         <tr>
-            <th>Information</th>
+            <th>Informations</th>
             <td>{{ entity.information }}</td>
         </tr>
     </tbody>
@@ -31,19 +27,18 @@
 <ul class="record_actions">
     <li>
         <a href="{{ path('tutor') }}">
-            Back to the list
+            Retour à la liste
         </a>
     </li>
     <li>
         <a href="{{ path('tutor_edit', { 'id': entity.id }) }}">
-            Edit
+            Modifier la fiche
         </a>
     </li>
     <li>
-        <form action="{{ path('tutor_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
+		<a href="{{ path('tutor_delete', { 'id': entity.id }) }}">
+			Supprimer la fiche
+		</a>
     </li>
 </ul>
 {% endblock %}

@@ -42,12 +42,8 @@ class TutorController extends Controller
             throw $this->createNotFoundException('Unable to find Tutor entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('BdxTutoratBundle:Tutor:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
         ));
     }
 
@@ -107,12 +103,10 @@ class TutorController extends Controller
         }
 
         $editForm = $this->createForm(new TutorType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BdxTutoratBundle:Tutor:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -131,7 +125,6 @@ class TutorController extends Controller
         }
 
         $editForm   = $this->createForm(new TutorType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
 
@@ -147,6 +140,27 @@ class TutorController extends Controller
         return $this->render('BdxTutoratBundle:Tutor:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
+        ));
+    }
+
+    /**
+     * Displays a confirmation to delete a Tutor entity.
+     *
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $entity = $em->getRepository('BdxTutoratBundle:Tutor')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Tutor entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('BdxTutoratBundle:Tutor:delete.html.twig', array(
+            'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -155,7 +169,7 @@ class TutorController extends Controller
      * Deletes a Tutor entity.
      *
      */
-    public function deleteAction($id)
+    public function destroyAction($id)
     {
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
