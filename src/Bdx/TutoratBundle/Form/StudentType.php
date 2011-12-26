@@ -13,7 +13,8 @@ class StudentType extends AbstractType
             ->add('name')
 			->add('email', null, array('required' => false))
 			->add('tel', null, array('required' => false))
-			->add('information', null, array('required' => false));
+			->add('information', null, array('required' => false))
+			->add('user', null, array('required' => false));
         ;
     }
 

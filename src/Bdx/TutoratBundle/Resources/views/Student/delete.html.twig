@@ -1,0 +1,27 @@
+{# src/Bdx/TutoratBundle/Resources/views/Student/delete.html.twig #}
+
+
+{% extends 'BdxTutoratBundle::layout.html.twig' %}
+
+
+{% block content %}
+<h1>Suppression de la fiche d'étudiant</h1>
+
+<p>
+Confirmer la suppression de la fiche d'étudiant de : {{ entity.name }}
+</p>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('student') }}">
+            Retour à la liste
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('student_destroy', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Supprimer</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

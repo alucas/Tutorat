@@ -42,12 +42,8 @@ class StudentController extends Controller
             throw $this->createNotFoundException('Unable to find Student entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('BdxTutoratBundle:Student:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
         ));
     }
 
@@ -107,12 +103,10 @@ class StudentController extends Controller
         }
 
         $editForm = $this->createForm(new StudentType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BdxTutoratBundle:Student:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -131,7 +125,6 @@ class StudentController extends Controller
         }
 
         $editForm   = $this->createForm(new StudentType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
 
@@ -147,7 +140,28 @@ class StudentController extends Controller
         return $this->render('BdxTutoratBundle:Student:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Displays a confirmation to delete an existing Student entity.
+     *
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $entity = $em->getRepository('BdxTutoratBundle:Student')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Student entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('BdxTutoratBundle:Student:delete.html.twig', array(
+            'entity'      => $entity,
+			'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -155,7 +169,7 @@ class StudentController extends Controller
      * Deletes a Student entity.
      *
      */
-    public function deleteAction($id)
+    public function destroyAction($id)
     {
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
