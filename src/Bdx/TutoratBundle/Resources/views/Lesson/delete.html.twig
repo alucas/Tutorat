@@ -1,0 +1,27 @@
+{# src/Bdx/TutoratBundle/Resources/views/Lesson/delete.html.twig #}
+
+
+{% extends 'BdxTutoratBundle::layout.html.twig' %}
+
+
+{% block content %}
+<h1>Suppression de la matière</h1>
+
+<p>
+Confirmer la suppression de la matière : {{ entity.name }}
+</p>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('lesson') }}">
+            Retour à la liste
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('lesson_destroy', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Supprimer</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

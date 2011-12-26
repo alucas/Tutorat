@@ -42,12 +42,9 @@ class LessonController extends Controller
             throw $this->createNotFoundException('Unable to find Lesson entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BdxTutoratBundle:Lesson:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
         ));
     }
 
@@ -107,12 +104,10 @@ class LessonController extends Controller
         }
 
         $editForm = $this->createForm(new LessonType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BdxTutoratBundle:Lesson:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -131,7 +126,6 @@ class LessonController extends Controller
         }
 
         $editForm   = $this->createForm(new LessonType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
 
@@ -147,6 +141,27 @@ class LessonController extends Controller
         return $this->render('BdxTutoratBundle:Lesson:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
+        ));
+    }
+
+    /**
+     * Displays a confirmation to delete a Lesson entity.
+     *
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $entity = $em->getRepository('BdxTutoratBundle:Lesson')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Lesson entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('BdxTutoratBundle:Lesson:delete.html.twig', array(
+            'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -155,7 +170,7 @@ class LessonController extends Controller
      * Deletes a Lesson entity.
      *
      */
-    public function deleteAction($id)
+    public function destroyAction($id)
     {
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();

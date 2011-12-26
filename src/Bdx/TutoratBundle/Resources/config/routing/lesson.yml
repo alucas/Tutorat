@@ -27,4 +27,8 @@ lesson_update:
 lesson_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "BdxTutoratBundle:Lesson:delete" }
+
+lesson_destroy:
+    pattern:  /{id}/destroy
+    defaults: { _controller: "BdxTutoratBundle:Lesson:destroy" }
     requirements: { _method: post }
