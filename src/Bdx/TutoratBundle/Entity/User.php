@@ -37,17 +37,6 @@ class User extends BaseUser
     private $information;
 
     /**
-	 * @ORM\OneToOne(targetEntity="Tutor")
-     */
-	private $tutor;
-
-    /**
-	 * @ORM\OneToOne(targetEntity="Student")
-     */
-	private $student;
-
-
-    /**
      * Get id
      *
      * @return integer 
@@ -95,45 +84,5 @@ class User extends BaseUser
     public function getInformation()
     {
         return $this->information;
-    }
-
-    /**
-     * Set tutor
-     *
-     * @param Bdx\TutoratBundle\Entity\Tutor $tutor
-     */
-    public function setTutor(\Bdx\TutoratBundle\Entity\Tutor $tutor)
-    {
-        $this->tutor = $tutor;
-    }
-
-    /**
-     * Get tutor
-     *
-     * @return Bdx\TutoratBundle\Entity\Tutor 
-     */
-    public function getTutor()
-    {
-        return $this->tutor;
-    }
-
-    /**
-     * Set student
-     *
-     * @param Bdx\TutoratBundle\Entity\Student $student
-     */
-    public function setStudent(\Bdx\TutoratBundle\Entity\Student $student)
-    {
-        $this->student = $student;
-    }
-
-    /**
-     * Get student
-     *
-     * @return Bdx\TutoratBundle\Entity\Student 
-     */
-    public function getStudent()
-    {
-        return $this->student;
     }
 }

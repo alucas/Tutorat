@@ -72,6 +72,11 @@ class Tutor
      */
     private $rdvs;
 			   
+    /**
+     * @ORM\OneToOne(targetEntity="User")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->lessons = new ArrayCollection();

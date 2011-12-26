@@ -80,6 +80,12 @@ class Student
      */
     private $rdvs;
 
+    /**
+     * @ORM\OneToOne(targetEntity="User")
+     */
+    private $user;
+
+
     public function __construct()
     {
         $this->rdvs = new ArrayCollection();
