@@ -83,6 +83,11 @@ class Tutor
         $this->rdvs = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
 
     /**
      * Get id
