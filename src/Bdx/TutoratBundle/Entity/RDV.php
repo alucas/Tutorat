@@ -3,6 +3,7 @@
 namespace Bdx\TutoratBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Bdx\TutoratBundle\Entity\RDV
@@ -25,27 +26,45 @@ class RDV
      * @var datetime $start
      *
      * @ORM\Column(name="start", type="datetime", nullable=false)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Type(type="DateTime")
      */
     private $start;
 
     /**
      * @var integer $duration
      *
-     * @ORM\Column(name="duration", type="integer")
+     * @ORM\Column(name="duration", type="integer", nullable=false)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Type(type="integer")
      */
     private $duration;
 
     /**
      * @var string $state
      *
-     * @ORM\Column(name="state", type="string", length=255)
+     * @ORM\Column(name="state", type="string", length=255, nullable=false)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Type(type="string")
+     * @Assert\MaxLength(255)
+     * @Assert\Choice(choices = {
+     *         "Nouveau",
+     *         "Confirmé",
+     *         "Annulé",
+     *         "Tuteur absent",
+     *         "Etudiant absent"
+     *         }, message = "Wrong state")
      */
     private $state;
 
     /**
      * @var text $information
      *
-     * @ORM\Column(name="information", type="text", nullable=false)
+     * @ORM\Column(name="information", type="text", nullable=true)
+     * @Assert\Type(type="string")
      */
     private $information;
 

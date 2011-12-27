@@ -21,3 +21,7 @@ BdxTutoratBundle_student:
 BdxTutoratBundle_user:
     resource: "@BdxTutoratBundle/Resources/config/routing/user.yml"
     prefix:   /user
+
+BdxTutoratBundle_rdv:
+    resource: "@BdxTutoratBundle/Resources/config/routing/rdv.yml"
+    prefix:   /rdv

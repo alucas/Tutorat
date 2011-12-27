@@ -1,0 +1,49 @@
+{# src/Bdx/TutoratBundle/Resources/views/RDV/index.html.twig #}
+
+
+{% extends 'BdxTutoratBundle::layout.html.twig' %}
+
+
+{% block content %}
+<h1>Liste des RDVs</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Début</th>
+            <th>Durée</th>
+            <th>Etat</th>
+            <th>Informations</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{% if entity.start %}{{ entity.start|date('l d-m-Y G:i') }}{% endif%}</td>
+            <td>{{ entity.duration }} minutes</td>
+            <td>{{ entity.state }}</td>
+            <td>{{ entity.information }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('rdv_show', { 'id': entity.id }) }}">Détails</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('rdv_edit', { 'id': entity.id }) }}">Modifier</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('rdv_new') }}">
+            Créer un nouveau RDV
+        </a>
+    </li>
+</ul>
+{% endblock %}

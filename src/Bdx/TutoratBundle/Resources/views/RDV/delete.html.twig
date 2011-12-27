@@ -1,0 +1,27 @@
+{# src/Bdx/TutoratBundle/Resources/views/RDV/delete.html.twig #}
+
+
+{% extends 'BdxTutoratBundle::layout.html.twig' %}
+
+
+{% block content %}
+<h1>Suppression du RDV</h1>
+
+<p>
+Confirmer la suppression du RDV
+</p>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('rdv') }}">
+            Retour à la liste
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('rdv_destroy', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Supprimer</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

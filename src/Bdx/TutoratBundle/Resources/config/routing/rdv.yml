@@ -1,0 +1,34 @@
+rdv:
+    pattern:  /
+    defaults: { _controller: "BdxTutoratBundle:RDV:index" }
+
+rdv_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BdxTutoratBundle:RDV:show" }
+
+rdv_new:
+    pattern:  /new
+    defaults: { _controller: "BdxTutoratBundle:RDV:new" }
+
+rdv_create:
+    pattern:  /create
+    defaults: { _controller: "BdxTutoratBundle:RDV:create" }
+    requirements: { _method: post }
+
+rdv_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BdxTutoratBundle:RDV:edit" }
+
+rdv_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BdxTutoratBundle:RDV:update" }
+    requirements: { _method: post }
+
+rdv_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BdxTutoratBundle:RDV:delete" }
+
+rdv_destroy:
+    pattern:  /{id}/destroy
+    defaults: { _controller: "BdxTutoratBundle:RDV:destroy" }
+    requirements: { _method: post }
