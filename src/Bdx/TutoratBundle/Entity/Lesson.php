@@ -46,7 +46,7 @@ class Lesson
     private $information;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tutor", inversedBy="lessons")
+     * @ORM\ManyToMany(targetEntity="Tutor", mappedBy="lessons")
      */
     private $tutors;
 			   
