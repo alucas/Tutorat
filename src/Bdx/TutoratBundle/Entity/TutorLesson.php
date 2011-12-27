@@ -25,6 +25,7 @@ class TutorLesson
      * @var integer $tutor
      *
 	 * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="tutors")
+	 * @ORM\JoinColumn(nullable=false)
      */
 	private $tutor;
 
@@ -32,9 +33,18 @@ class TutorLesson
      * @var integer $lesson
      *
 	 * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="lessons")
+	 * @ORM\JoinColumn(nullable=false)
      */
 	private $lesson;
 
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getLesson()->getName();
+    }
 
     /**
      * Get id
