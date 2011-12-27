@@ -13,19 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class TutorLesson
 {
     /**
-     * @var integer $id
-     *
-     * @ORM\Column(name="id", type="integer", unique=true, nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @var integer $tutor
      *
 	 * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="tutors")
 	 * @ORM\JoinColumn(nullable=false)
+     * @ORM\Id
      */
 	private $tutor;
 
@@ -34,6 +26,7 @@ class TutorLesson
      *
 	 * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="lessons")
 	 * @ORM\JoinColumn(nullable=false)
+     * @ORM\Id
      */
 	private $lesson;
 
@@ -44,16 +37,6 @@ class TutorLesson
     public function __toString()
     {
         return $this->getLesson()->getName();
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
