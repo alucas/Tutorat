@@ -63,7 +63,7 @@ class Tutor
     private $information;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Lesson")
+     * @ORM\ManyToMany(targetEntity="Lesson", mappedBy="tutors")
      */
     private $lessons;
 			   
