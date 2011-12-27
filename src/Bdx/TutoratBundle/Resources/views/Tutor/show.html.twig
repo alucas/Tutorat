@@ -21,6 +21,14 @@
             <th>Utilisateur associé</th>
             <td>{{ entity.user }}</td>
         </tr>
+		<tr>
+			<th>Matières enseignées</th>
+			<td>
+				{% for lesson in entity.lessons %}
+				{{ lesson }} - 
+				{% endfor %}
+			</td>
+		</tr>
         <tr>
             <th>Informations</th>
             <td>{{ entity.information }}</td>
