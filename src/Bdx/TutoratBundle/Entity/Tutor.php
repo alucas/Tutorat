@@ -63,7 +63,7 @@ class Tutor
     private $information;
 
     /**
-     * @ORM\OneToMany(targetEntity="TutorLesson", mappedBy="tutor")
+     * @ORM\ManyToMany(targetEntity="Lesson")
      */
     private $lessons;
 			   
@@ -217,5 +217,15 @@ class Tutor
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Add lessons
+     *
+     * @param Bdx\TutoratBundle\Entity\Lesson $lessons
+     */
+    public function addLesson(\Bdx\TutoratBundle\Entity\Lesson $lessons)
+    {
+        $this->lessons[] = $lessons;
     }
 }

@@ -46,7 +46,7 @@ class Lesson
     private $information;
 
     /**
-     * @ORM\OneToMany(targetEntity="TutorLesson", mappedBy="lesson")
+     * @ORM\ManyToMany(targetEntity="Tutor")
      */
     private $tutors;
 			   
@@ -155,5 +155,15 @@ class Lesson
     public function getRdvs()
     {
         return $this->rdvs;
+    }
+
+    /**
+     * Add tutors
+     *
+     * @param Bdx\TutoratBundle\Entity\Tutor $tutors
+     */
+    public function addTutor(\Bdx\TutoratBundle\Entity\Tutor $tutors)
+    {
+        $this->tutors[] = $tutors;
     }
 }

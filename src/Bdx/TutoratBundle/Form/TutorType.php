@@ -13,7 +13,14 @@ class TutorType extends AbstractType
             ->add('name')
             ->add('email')
 			->add('information', null, array('required' => false))
-			->add('user', null, array('required' => false));
+			->add('user', null, array('required' => false))
+			->add('lessons', 'entity', array(
+					'class' => 'Bdx\TutoratBundle\Entity\Lesson',
+					'expanded' => true,
+					'multiple' => true,
+					'property' => 'name',
+					))
+			;
     }
 
     public function getName()
