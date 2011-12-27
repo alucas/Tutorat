@@ -26,15 +26,18 @@
 				<li><a href="{{ path('tutor') }}" >Tutor</a></li>
 				<li><a href="{{ path('student') }}" >Student</a></li>
 				<li><a href="{{ path('user') }}" >user</a></li>
-
-				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-				<li><a href=" {{ path('fos_user_security_logout') }} ">Logout</a></li>
-				{% else %}
-				<li><a href=" {{ path('fos_user_registration_register') }} ">Register</a></li>
-				<li><a href=" {{ path('fos_user_security_login') }} ">Login</a></li>
-				{% endif %}
 				{% endblock %}
 			</ul>
+		</nav>
+		<nav id="profil">
+			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+			Bonjour <a href="#">{{ app.user }}</a><br />
+			<a href=" {{ path('fos_user_security_logout') }} ">Logout</a> -
+			<a href=" {{ path('fos_user_security_logout') }} ">Logout</a>
+			{% else %}
+			<a href=" {{ path('fos_user_registration_register') }} ">Register</a> -
+			<a href=" {{ path('fos_user_security_login') }} ">Login</a>
+			{% endif %}
 		</nav>
 	</div>
 </header>

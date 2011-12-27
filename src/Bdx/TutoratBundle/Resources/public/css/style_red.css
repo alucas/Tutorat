@@ -192,6 +192,19 @@ color: #fff;
 border: solid 1px #A94B4B;
 }
 
+/* Profil */
+
+#profil
+{
+position: absolute;
+right: 0em;
+bottom: 4.2em;
+padding: 1.1em 1.4em 1.0em 1.4em;
+float: left;
+border: solid 1px #fff;
+background: #fff url('../image/images_red/n4.gif') repeat-x;
+}
+
 /* Main */
 
 #main
