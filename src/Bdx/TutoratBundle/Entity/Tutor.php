@@ -160,16 +160,6 @@ class Tutor
     }
 
     /**
-     * Add lessons
-     *
-     * @param Bdx\TutoratBundle\Entity\TutorLesson $lessons
-     */
-    public function addTutorLesson(\Bdx\TutoratBundle\Entity\TutorLesson $lessons)
-    {
-        $this->lessons[] = $lessons;
-    }
-
-    /**
      * Get lessons
      *
      * @return Doctrine\Common\Collections\Collection 
