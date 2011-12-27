@@ -14,7 +14,6 @@ class TutorType extends AbstractType
             ->add('email')
 			->add('information', null, array('required' => false))
 			->add('user', null, array('required' => false));
-        ;
     }
 
     public function getName()
