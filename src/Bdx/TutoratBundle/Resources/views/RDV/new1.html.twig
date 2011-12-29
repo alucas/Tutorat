@@ -1,0 +1,8 @@
+{% extends 'BdxTutoratBundle:RDV:new.html.twig' %}
+
+{% block actions %}
+<li>
+	<a href="{{ path("student_new") }}">Ajouter un nouvel étudiant</a>
+</li>
+{{ parent() }}
+{% endblock %}

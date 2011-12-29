@@ -27,8 +27,8 @@ class RDV
      *
      * @ORM\Column(name="start", type="datetime", nullable=false)
      *
-     * @Assert\NotBlank()
-     * @Assert\Type(type="DateTime")
+     * @Assert\NotNull(groups={"Default", "step2"})
+     * @Assert\Type(type="DateTime", groups={"Default", "step2"})
      */
     private $start;
 
@@ -37,8 +37,8 @@ class RDV
      *
      * @ORM\Column(name="duration", type="integer", nullable=false)
      *
-     * @Assert\NotBlank()
-     * @Assert\Type(type="integer")
+     * @Assert\NotNull(groups={"Default", "step2"})
+     * @Assert\Type(type="integer", groups={"Default", "step2"})
      */
     private $duration;
 
@@ -64,7 +64,8 @@ class RDV
      * @var text $information
      *
      * @ORM\Column(name="information", type="text", nullable=true)
-     * @Assert\Type(type="string")
+     *
+     * @Assert\Type(type="string", groups={"Default", "step4"})
      */
     private $information;
 
@@ -72,6 +73,8 @@ class RDV
      * @var integer $tutor
      *
 	 * @ORM\ManyToOne(targetEntity="Tutor", inversedBy="rdvs")
+     *
+     * @Assert\NotNull()
      */
 	private $tutor;
 
@@ -79,6 +82,8 @@ class RDV
      * @var integer $student
      *
 	 * @ORM\ManyToOne(targetEntity="Student", inversedBy="rdvs")
+     *
+     * @Assert\NotNull()
      */
 	private $student;
 
@@ -86,6 +91,8 @@ class RDV
      * @var integer $lesson
      *
 	 * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="rdvs")
+     *
+     * @Assert\NotNull()
      */
 	private $lesson;
 

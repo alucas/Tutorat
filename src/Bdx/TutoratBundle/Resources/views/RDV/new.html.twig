@@ -7,18 +7,22 @@
 {% block content %}
 <h1>Création d'un RDV</h1>
 
-<form action="{{ path('rdv_create') }}" method="post" {{ form_enctype(form) }}>
+{% block create_rdv_content %}
+<form action="{{ path('rdv_create', { 'step': step }) }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
-        <button type="submit">Créer</button>
+        <button type="submit">Etape {{ step + 1 }}</button>
     </p>
 </form>
+{% endblock %}
 
 <ul class="record_actions">
+	{% block actions %}
     <li>
         <a href="{{ path('rdv') }}">
             Retour à la liste
         </a>
     </li>
+	{% endblock %}
 </ul>
 {% endblock %}

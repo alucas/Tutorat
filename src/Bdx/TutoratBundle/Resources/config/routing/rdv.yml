@@ -7,13 +7,17 @@ rdv_show:
     defaults: { _controller: "BdxTutoratBundle:RDV:show" }
 
 rdv_new:
-    pattern:  /new
-    defaults: { _controller: "BdxTutoratBundle:RDV:new" }
+    pattern:  /new/{step}
+    defaults: { _controller: "BdxTutoratBundle:RDV:new", step:1 }
+    requirements:
+        step: 1|2|3|4
 
 rdv_create:
-    pattern:  /create
+    pattern:  /create/{step}
     defaults: { _controller: "BdxTutoratBundle:RDV:create" }
-    requirements: { _method: post }
+    requirements:
+        _method: post
+        step: 1|2|3|4
 
 rdv_edit:
     pattern:  /{id}/edit

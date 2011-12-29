@@ -6,6 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Bdx\TutoratBundle\Entity\RDV;
 use Bdx\TutoratBundle\Form\RDVType;
+use Bdx\TutoratBundle\Form\Step1RDVType;
+use Bdx\TutoratBundle\Form\Step2RDVType;
+use Bdx\TutoratBundle\Form\Step3RDVType;
+use Bdx\TutoratBundle\Form\Step4RDVType;
 
 /**
  * RDV controller.
@@ -55,12 +59,33 @@ class RDVController extends Controller
      * Displays a form to create a new RDV entity.
      *
      */
-    public function newAction()
+    public function newAction($step)
     {
         $entity = new RDV();
-        $form   = $this->createForm(new RDVType(), $entity);
 
-        return $this->render('BdxTutoratBundle:RDV:new.html.twig', array(
+		switch ($step) {
+			case 1:
+				$form = $this->createForm(new Step1RDVType(), $entity);
+				break;
+			case 2:
+				$date = new \DateTime();
+				$date->setTime(14, 0);
+				$entity->setStart($date);
+				$entity->setDuration(90);
+				$form = $this->createForm(new Step2RDVType(), $entity);
+				break;
+			case 3:
+				$form = $this->createForm(new Step3RDVType(), $entity);
+				break;
+			case 4:
+				$form = $this->createForm(new Step4RDVType(), $entity);
+				break;
+			default:
+				throw Exception('Invalid \'step\' value : '.$step);
+		}
+
+        return $this->render('BdxTutoratBundle:RDV:new'.$step.'.html.twig', array(
+            'step'   => $step,
             'entity' => $entity,
             'form'   => $form->createView()
         ));
@@ -70,23 +95,125 @@ class RDVController extends Controller
      * Creates a new RDV entity.
      *
      */
-    public function createAction()
+    public function createAction($step)
     {
         $entity  = new RDV();
         $request = $this->getRequest();
-        $form    = $this->createForm(new RDVType(), $entity);
-        $form->bindRequest($request);
+		$session = $this->getRequest()->getSession();
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($entity);
-            $em->flush();
+		switch ($step) {
+			case 1:
+				$form = $this->createForm(new Step1RDVType(), $entity);
+				$form->bindRequest($request);
 
-            return $this->redirect($this->generateUrl('rdv_show', array('id' => $entity->getId())));
-            
-        }
+				if (!$form->isValid()) {
+					break;
+				}
 
-        return $this->render('BdxTutoratBundle:RDV:new.html.twig', array(
+				$session->set('rdv_new_student', $entity->getStudent());
+
+				return $this->redirect($this->generateUrl('rdv_new', array(
+							'step' => $step + 1,
+							)));
+			case 2:
+				$form = $this->createForm(new Step2RDVType(), $entity);
+				$form->bindRequest($request);
+
+				if (!$form->isValid()) {
+					break;
+				}
+
+				$session->set('rdv_new_lesson', $entity->getLesson());
+				$session->set('rdv_new_start', $entity->getStart());
+				$session->set('rdv_new_duration', $entity->getDuration());
+
+				return $this->redirect($this->generateUrl('rdv_new', array(
+							'step' => $step + 1,
+							)));
+			case 3:
+				$form = $this->createForm(new Step3RDVType(), $entity);
+				$form->bindRequest($request);
+
+				if (!$form->isValid()) {
+					break;
+				}
+
+				$session->set('rdv_new_tutor', $entity->getTutor());
+
+				return $this->redirect($this->generateUrl('rdv_new', array(
+							'step' => $step + 1,
+							)));
+			case 4:
+				$form = $this->createForm(new Step4RDVType(), $entity);
+				$form->bindRequest($request);
+
+				if (!$form->isValid()) {
+					break;
+				}
+
+				// Retrieve untracked entities
+				$old_student = $session->get('rdv_new_student');
+				$old_lesson = $session->get('rdv_new_lesson');
+				$old_tutor = $session->get('rdv_new_tutor');
+
+				// Fetch new entities
+				$student = $this->getDoctrine()
+								->getRepository('BdxTutoratBundle:Student')
+						        ->find($old_student->getId());
+
+				if (!$student) {
+					throw $this->createNotFoundException(
+							'No student found for id '.$old_student->getId());
+				}
+
+				$lesson = $this->getDoctrine()
+								->getRepository('BdxTutoratBundle:Lesson')
+						        ->find($old_lesson->getId());
+
+				if (!$lesson) {
+					throw $this->createNotFoundException(
+							'No lesson found for id '.$old_lesson->getId());
+				}
+
+				$tutor = $this->getDoctrine()
+								->getRepository('BdxTutoratBundle:Tutor')
+						        ->find($old_tutor->getId());
+
+				if (!$tutor) {
+					throw $this->createNotFoundException(
+							'No tutor found for id '.$old_tutor->getId());
+				}
+
+				// Fill the new entity
+				$entity->setStudent($student);
+				$entity->setLesson($lesson);
+				$entity->setStart($session->get('rdv_new_start'));
+				$entity->setDuration($session->get('rdv_new_duration'));
+				$entity->setTutor($tutor);
+				$entity->setState('Nouveau');
+
+				// Validate the new entity
+				$validator = $this->get('validator');
+				$errors = $validator->validate($entity);
+
+				if (count($errors) > 0) {
+					throw Exception('Some entity\'s fields are wrong');
+				}
+
+				// Persist the new entity
+				$em = $this->getDoctrine()->getEntityManager();
+				$em->persist($entity);
+				$em->flush();
+
+				return $this->redirect($this->generateUrl('rdv_show', array(
+							'id' => $entity->getId(),
+							)));
+			default:
+				throw Exception('Invalid \'step\' value : '.$step);
+		}
+
+        return $this->render('BdxTutoratBundle:RDV:new'.$step.'.html.twig', array(
+            'step'   => $step,
             'entity' => $entity,
             'form'   => $form->createView()
         ));

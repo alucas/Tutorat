@@ -1,0 +1,11 @@
+{% extends 'BdxTutoratBundle:RDV:new.html.twig' %}
+
+
+{% block create_rdv_content %}
+<form action="{{ path('rdv_create', { 'step': step }) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Enregistrer</button>
+    </p>
+</form>
+{% endblock %}
