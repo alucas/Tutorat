@@ -1,0 +1,26 @@
+{% extends 'BdxTutoratBundle::layout.html.twig' %}
+
+
+{% block content %}
+<table>
+	<tr>
+		<td></td>
+		{% for lesson in lessons %}
+		<td>{{lesson.name}}</td>
+		{% endfor %}
+	</tr>
+	{% for tutor in tutors %}
+	<tr>
+		<td>{{tutor.name}}</td>
+		{% for lesson in lessons %}
+		<td>
+			{% if lesson.id in tutorsLessons[tutor.id] %}
+			+
+			{% endif %}
+		</td>
+		{% endfor %}
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}
+
