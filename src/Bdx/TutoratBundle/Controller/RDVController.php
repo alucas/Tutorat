@@ -157,8 +157,8 @@ class RDVController extends Controller
 				$old_tutor = $session->get('rdv_new_tutor');
 
 				// Fetch new entities
-				$student = $this->getDoctrine()
-								->getRepository('BdxTutoratBundle:Student')
+				$em = $this->getDoctrine()->getEntityManager();
+				$student = $em->getRepository('BdxTutoratBundle:Student')
 						        ->find($old_student->getId());
 
 				if (!$student) {
@@ -166,8 +166,7 @@ class RDVController extends Controller
 							'No student found for id '.$old_student->getId());
 				}
 
-				$lesson = $this->getDoctrine()
-								->getRepository('BdxTutoratBundle:Lesson')
+				$lesson = $em->getRepository('BdxTutoratBundle:Lesson')
 						        ->find($old_lesson->getId());
 
 				if (!$lesson) {
@@ -175,8 +174,7 @@ class RDVController extends Controller
 							'No lesson found for id '.$old_lesson->getId());
 				}
 
-				$tutor = $this->getDoctrine()
-								->getRepository('BdxTutoratBundle:Tutor')
+				$tutor = $em->getRepository('BdxTutoratBundle:Tutor')
 						        ->find($old_tutor->getId());
 
 				if (!$tutor) {
@@ -201,7 +199,6 @@ class RDVController extends Controller
 				}
 
 				// Persist the new entity
-				$em = $this->getDoctrine()->getEntityManager();
 				$em->persist($entity);
 				$em->flush();
 
