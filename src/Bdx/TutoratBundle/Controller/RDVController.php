@@ -211,8 +211,7 @@ class RDVController extends Controller
 				$client = $gcalendar->hardLogin();
 				$gcalendar->createEvent($client, $start, $end,
 						$entity->getTutor()->getName().' - '.$entity->getLesson()->getName(),
-						'Tuteur: '.$entity->getTutor()->getName()."\n"
-						.'Etudiant: '.$entity->getStudent()->getName(), 'Cremi'
+						$entity->getDescription(), 'Cremi'
 						);
 
 				return $this->redirect($this->generateUrl('rdv_show', array(

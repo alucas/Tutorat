@@ -246,4 +246,17 @@ class RDV
     {
         return $this->lesson;
     }
+
+	public function getDescription()
+	{
+		return 'Tuteur: '.$this->getTutor()->getName()."\n"
+			.'Matière: '.$this->getLesson()->getName()."\n"
+			.'Etudiant: '.$this->getStudent()->getName()."\n"
+			.'Email: '.$this->getStudent()->getEmail()."\n"
+			.'Tel: '.$this->getStudent()->getTel()."\n"
+			."\n"
+			.$this->getInformation()."\n"
+			."\n"
+			.$this->getStudent()->getInformation();
+	}
 }
