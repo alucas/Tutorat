@@ -17,6 +17,7 @@ $loader->registerNamespaces(array(
     'FOS'              => __DIR__.'/../vendor/bundles',
     'Ladybug'          => __DIR__.'/../vendor/ladybug/lib',
     'RaulFraile'       => __DIR__.'/../vendor/bundles',
+    'Zend'             => __DIR__.'/../vendor/Zend/library',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
@@ -46,3 +47,4 @@ AnnotationRegistry::registerFile(__DIR__.'/../vendor/doctrine/lib/Doctrine/ORM/M
 require_once __DIR__.'/../vendor/swiftmailer/lib/classes/Swift.php';
 Swift::registerAutoload(__DIR__.'/../vendor/swiftmailer/lib/swift_init.php');
 
+set_include_path(__DIR__.'/../vendor/Zend/library'.PATH_SEPARATOR.get_include_path());

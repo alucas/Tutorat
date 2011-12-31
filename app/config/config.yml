@@ -69,3 +69,7 @@ fos_user:
     from_email:
         address:        noreply.tutorat@alwaysdata.net
         sender_name:    Tutorat Informatique
+
+services:
+    request:
+        class: Symfony\Component\HttpFoundation\Request
