@@ -4,4 +4,10 @@ parameters:
 services:
     gcalendar:
         class: %gcalendar.class%
-        arguments: [@session, @request]
+        arguments:
+            - @session
+            - @request
+            - %gcalendar.login%
+            - %gcalendar.password%
+            - %gcalendar.calendarId%
+            - %gcalendar.calendarCookie%

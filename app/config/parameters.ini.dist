@@ -17,3 +17,8 @@
     locale            = en
 
     secret            =
+
+    gcalendar.login =
+    gcalendar.password =
+    gcalendar.calendarId =
+    gcalendar.calendarCookie =
