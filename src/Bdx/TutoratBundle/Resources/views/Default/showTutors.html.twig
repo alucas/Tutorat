@@ -1,0 +1,14 @@
+{% extends 'BdxTutoratBundle::layout.html.twig' %}
+
+
+{% block content %}
+<table>
+	{% for name, duration in tutorsDuration %}
+	<tr>
+		<td>{{ name }}</td>
+		<td>{{ duration }}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}
+

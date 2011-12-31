@@ -37,6 +37,32 @@ class DefaultController extends Controller
 				'tutorsLessons' => $tutorsLessons,
 				));
 	}
+
+	public function showTutorsAction()
+	{
+        $em = $this->getDoctrine()->getEntityManager();
+		$tutors = $em->getRepository('BdxTutoratBundle:Tutor')
+		                      ->findNameDurationByLeftJoinRDV();
+
+		$tutorsDuration = array();
+		foreach ($tutors as $tutor) {
+			if (!isset($tutorsDuration[$tutor['name']])) {
+				if ($tutor['duration']) {
+					$tutorsDuration[$tutor['name']] = intval($tutor['duration']);
+				} else {
+					$tutorsDuration[$tutor['name']] = 0;
+				}
+			} else {
+				$tutorsDuration[$tutor['name']] += intval($tutor['duration']);
+			}
+		}
+
+		asort($tutorsDuration);
+
+		return $this->render('BdxTutoratBundle:Default:showTutors.html.twig', array(
+				'tutorsDuration' => $tutorsDuration,
+				));
+	}
 }
 
 ?>

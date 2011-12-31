@@ -6,6 +6,10 @@ BdxTutoratBundle_hello:
     pattern:  /hello/{name}
     defaults: { _controller: BdxTutoratBundle:Default:index, name : "World" }
 
+BdxTutoratBundle_showTutors:
+    pattern:  /showTutors
+    defaults: { _controller: BdxTutoratBundle:Default:showTutors }
+
 BdxTutoratBundle_showLessons:
     pattern:  /showLessons
     defaults: { _controller: BdxTutoratBundle:Default:showLessons }

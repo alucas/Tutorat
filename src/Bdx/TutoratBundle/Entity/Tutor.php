@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Bdx\TutoratBundle\Entity\Tutor
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Bdx\TutoratBundle\Repository\TutorRepository")
  */
 class Tutor
 {
