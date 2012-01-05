@@ -5,12 +5,16 @@ namespace Bdx\TutoratBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
 
 /**
  * Bdx\TutoratBundle\Entity\Tutor
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Bdx\TutoratBundle\Repository\TutorRepository")
+ * @DoctrineAssert\UniqueEntity("name")
+ * @DoctrineAssert\UniqueEntity("email")
+ * @DoctrineAssert\UniqueEntity("user")
  */
 class Tutor
 {
