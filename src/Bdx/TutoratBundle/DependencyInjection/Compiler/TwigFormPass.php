@@ -1,0 +1,27 @@
+<?php
+
+namespace Bdx\TutoratBundle\DependencyInjection\Compiler;
+
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+
+/**
+ * Auto adds the Twig form template to the list of resources
+ *
+ * @author Henrik Bjornskov <henrik@bjrnskov.dk>
+ */
+class TwigFormPass implements CompilerPassInterface
+{
+	public function process(ContainerBuilder $container)
+	{
+		if (!$container->hasParameter('twig.form.resources')) {
+			return;
+		}
+
+		$container->setParameter('twig.form.resources', array_merge(
+					$container->getParameter('twig.form.resources'),
+					array('BdxTutoratBundle:Form:div_layout.html.twig')
+					));
+	}
+}
+
