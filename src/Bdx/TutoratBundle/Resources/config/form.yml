@@ -1,0 +1,9 @@
+parameters:
+    bdx_tutorat.form.type.tutorAvailable.class: Bdx\TutoratBundle\Form\Type\TutorAvailableType
+
+services:
+    bdx_tutorat.form.type.tutorAvailable:
+        class: %bdx_tutorat.form.type.tutorAvailable.class%
+        arguments: [ @gcalendar, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: form.type, alias: tutoravailable }

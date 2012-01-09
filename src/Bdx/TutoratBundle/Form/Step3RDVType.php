@@ -10,7 +10,7 @@ class Step3RDVType extends AbstractType
 	public function buildForm(FormBuilder $builder, array $options)
 	{
 		$builder
-			->add('tutor')
+			->add('tutor', 'tutoravailable')
 			;
 	}
 
